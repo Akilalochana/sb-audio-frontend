@@ -3,6 +3,7 @@ import { MdAutoGraph } from 'react-icons/md';
 import { Link, Route, Routes } from 'react-router-dom';
 import AdminItem from './adminItem';
 import AddItemPage from './addItemPage';
+import UpdateItemPage from './updateItemPage';
 
 function AdminPage() {
   return (
@@ -34,6 +35,7 @@ function AdminPage() {
             <Route path="/bookings" element={<h1>Bookings</h1>} />
             <Route path="/items" element={<AdminItem/>}/>
             <Route path="/items/add" element={<AddItemPage/>}/>
+            <Route path="/items/edit" element={<UpdateItemPage/>}/>
         </Routes>
 
       </div>
