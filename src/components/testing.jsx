@@ -1,25 +1,26 @@
 import { useState } from "react";
+import mediaUplod from "../utils/mediaUplod";
+
 
 export default function Testing() {
+    const [file, setFlie] = useState(null);
 
-    const [count, setCount] = useState(0);
-    const itemName = "coconut";
+    function uploadFile(){
+        console.log(file);
+        mediaUplod(file).then((url)=>{
+            console.log(url);
+        })
+    }
+
 
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center">
-            <h1 className="text-7xl">{count}+{itemName}s</h1>
+            <h1>
+                <input type="file" multiple onChange={(e)=>{setFlie(e.target.files[0])}}/>
+                <button onClick={uploadFile} className="bg-[#efac38] ">upload</button>
+            </h1>
 
-            <button className="w-[100px] h-[50px] bg-black text-white rounded-lg text-3xl" onClick={
-                ()=>{
-                   const newCount = count + 1;
-                   setCount(newCount);
-                }
-            }>
-                count
-            </button>
-            <div className="">
-
-            </div>
+        
         </div>
         
     );
