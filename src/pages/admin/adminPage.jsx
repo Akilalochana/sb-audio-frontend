@@ -62,13 +62,14 @@ export default function AdminPage(){
 
       </div>
       <div className="w-[calc(100vw-200px)] ">
-        {userValidated&&<Routes path="/*">
+      <Routes path="/*">
+      <Route path="/bookings" element={<h1>Booking</h1>}/>
           <Route path="/orders" element={<AdminOrdersPage/>}/>
           <Route path="/users" element={<AdminUsersPage/>}/>
           <Route path="/items" element={<AdminItem/>}/> 
           <Route path="/items/add" element={<AddItemPage/>}/>
           <Route path="/items/edit" element={<UpdateItemPage/>}/>
-        </Routes>}
+        </Routes>
       </div>
     </div>
   )
