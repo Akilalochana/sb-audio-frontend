@@ -102,9 +102,9 @@ export default function AdminItem() {
           </table>
         </div>
       </div>}
-      <Link to="/admin/items/add" className="fixed right-10 bottom-10">
+      <Link to="/admin/items/add" className="fixed right-50 bottom-50">
         <div className="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg flex items-center justify-center transition-colors">
-          <CiCirclePlus className="w-8 h-8" />
+          <CiCirclePlus className="w-12 h-12" />
         </div>
       </Link>
     </div>

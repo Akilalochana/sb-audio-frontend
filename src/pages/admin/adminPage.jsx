@@ -1,47 +1,75 @@
-import React from 'react'
-import { MdAutoGraph } from 'react-icons/md';
-import { Link, Route, Routes } from 'react-router-dom';
-import AdminItem from './adminItem';
-import AddItemPage from './addItemPage';
-import UpdateItemPage from './updateItemPage';
+import { BsGraphDown } from "react-icons/bs";
+import { FaRegBookmark, FaRegUser } from "react-icons/fa";
+import { MdOutlineSpeaker } from "react-icons/md";
+import { Link, Route, Routes } from "react-router-dom";
 
-function AdminPage() {
-  return (
-    <div className='w-full h-screen flex'>
+import AddItemPage from "./addItemPage";
+import UpdateItemPage from "./updateItemPage";
+import AdminUsersPage from "./adminUsersPage";
+import AdminOrdersPage from "./adminBooking";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import AdminItem from "./adminItem";
 
-      <div className='w-[200px] h-full bg-green-500'>
-
-        <button className='w-full h-[50px] text-[20px] font-bold bg-red-200 flex justify-center items-center'>
-          <MdAutoGraph/>
+export default function AdminPage(){
+  const [userValidated, setUserValidated] = useState(false);
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if(!token){
+      window.location.href = "/login";
+    }
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/`,{
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res)=>{
+      console.log(res.data);
+      const user = res.data;
+      if(user.role == "admin"){
+        setUserValidated(true);        
+      }else{
+        window.location.href = "/";
+      }
+      
+    }).catch((err)=>{
+      console.error(err);
+      setUserValidated(false);
+    })
+  },[])
+  return(
+    <div className="w-full h-screen flex">
+      <div className="w-[200px] h-full bg-green-200">
+        <button className="w-full h-[40px] text-[25px] font-bold  flex justify-center items-center">
+          <BsGraphDown/>
           Dashboard
         </button>
-
-        <Link to="/admin/bookings" className='w-full h-[50px] text-[20px] font-bold '>
-          Bookings
+        <Link to="/admin/orders" className="w-full h-[40px] text-[25px] font-bold flex justify-center items-center">
+          <FaRegBookmark/>
+          Orders
         </Link>
-
-        <Link to="/admin/items" className='w-full h-[50px] text-[20px] font-bold '>
+        <Link to="/admin/items" className="w-full h-[40px] text-[25px] font-bold flex justify-center items-center">
+          <MdOutlineSpeaker/>
           Items
         </Link>
-
-        <button className='w-full h-[50px] text-[20px] font-bold '>
-          reviews
-        </button>
-      </div> 
-
-      <div className='w-[calc(100vw-200px)]'>
-    
-        <Routes path="/*">
-            <Route path="/bookings" element={<h1>Bookings</h1>} />
-            <Route path="/items" element={<AdminItem/>}/>
-            <Route path="/items/add" element={<AddItemPage/>}/>
-            <Route path="/items/edit" element={<UpdateItemPage/>}/>
-        </Routes>
+        <Link to="/admin/users" className="w-full h-[40px] text-[25px] font-bold flex justify-center items-center">
+          <FaRegUser/>
+          Users
+        </Link>
+        <Link to="/items" className="w-full h-[40px] text-[20px]  font-bold flex justify-center mt-30 items-center">
+          
+          go to customer home page
+        </Link>
 
       </div>
-      
+      <div className="w-[calc(100vw-200px)] ">
+        {userValidated&&<Routes path="/*">
+          <Route path="/orders" element={<AdminOrdersPage/>}/>
+          <Route path="/users" element={<AdminUsersPage/>}/>
+          <Route path="/items" element={<AdminItem/>}/> 
+          <Route path="/items/add" element={<AddItemPage/>}/>
+          <Route path="/items/edit" element={<UpdateItemPage/>}/>
+        </Routes>}
+      </div>
     </div>
   )
 }
-
-export default AdminPage;
