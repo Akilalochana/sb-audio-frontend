@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function ProductCard({ item }) {
 
     
     return (
-        <div className="w-[300px] h-[400px] bg-white shadow-lg rounded-2xl p-4 m-4 hover:shadow-xl transition-shadow duration-300">
+        <div className="w-[300px] h-[430px] bg-white shadow-lg rounded-2xl p-4 m-4 hover:shadow-xl transition-shadow duration-300">
             <img
                 src={item.image[0]}
                 alt={item.name}
@@ -22,6 +24,10 @@ export default function ProductCard({ item }) {
                 <p>Category: {item.category}</p>
                 <p>Size: {item.dimensions}</p>
             </div>
+
+            <Link to={"/product/"+item.key} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
+                viwe details
+            </Link>
         </div>
     );
 }
