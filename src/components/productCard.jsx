@@ -20,7 +20,7 @@ export default function ProductCard({ item }) {
                     {item.availability ? 'Available' : 'Out of Stock'}
                 </span>
             </div>
-            <div className="mt-2 text-sm text-gray-500">
+            <div className="mt-2 text-sm text-gray-500 mb-4">
                 <p>Category: {item.category}</p>
                 <p>Size: {item.dimensions}</p>
             </div>
