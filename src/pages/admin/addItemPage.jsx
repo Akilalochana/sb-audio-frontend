@@ -25,7 +25,7 @@ export default function AddItemPage() {
 		//image 4
 		for (let i = 0; i < productImages.length; i++) {
 			console.log(productImages[i]);
-			const promise = mediaUpload(productImages[i]);
+			const promise = mediaUplod(productImages[i]);
 			promises.push(promise);
 			// if(i ==5){
 			// 	toast.error("You can only upload 25 images at a time");
@@ -58,7 +58,7 @@ export default function AddItemPage() {
                 category : productCategory,
                 dimensions : productDimension,
                 description : productDescription,
-                images : imageUrls
+                image : imageUrls
             },{
                 headers : {
                     Authorization : "Bearer " + token
@@ -128,7 +128,14 @@ export default function AddItemPage() {
                     placeholder="Product Description" 
                 />
 
-                <input type="file" onChange={(e) => setProductImages(e.target.files)} multiple className="p-2 border-2 rounded" />
+                <input 
+                     type="file"
+                     multiple 
+                     onChange={(e) =>{
+                        setProductImages(e.target.files);
+                     }}
+                     className="p-2 border rounded w-full"
+                />
 
                 <button 
                     className="p-2 bg-blue-500 text-white rounded w-full hover:bg-blue-600"

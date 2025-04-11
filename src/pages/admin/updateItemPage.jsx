@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import mediaUplod from "../../utils/mediaUplod";
 
 export default function UpdateItemPage() {
 
@@ -14,6 +15,7 @@ export default function UpdateItemPage() {
     const [productCategory, setProductCategory] = useState(location.state.category);
     const [productDimension, setProductDimension] = useState(location.state.dimensions);
     const [productDescription, setProductDescription] = useState(location.state.description);
+    const [productImages, setProductImages] = useState([]);
 
 
     const navigate = useNavigate();
@@ -21,6 +23,21 @@ export default function UpdateItemPage() {
 
   
     async function handleAddItems(){
+        let updatingImages = location.state.image;
+
+        if(productImages.length >0){
+            // multiple promisses hendle
+            const promises = [];
+            //image 4
+            for (let i = 0; i < productImages.length; i++) {
+                console.log(productImages[i]);
+                const promise = mediaUplod(productImages[i]);
+                promises.push(promise);
+                
+            }
+            updatingImages = await Promise.all(promises);
+
+        }
         console.log(productKey, productName, productPrice, productCategory, productDimension, productDescription);
 
         const token = localStorage.getItem("token");
@@ -36,7 +53,8 @@ export default function UpdateItemPage() {
                 price : productPrice,
                 category : productCategory,
                 dimensions : productDimension,
-                description : productDescription
+                description : productDescription,
+                image : updatingImages
 
             },{
                 headers : {
@@ -107,6 +125,13 @@ export default function UpdateItemPage() {
                     type="text" 
                     placeholder="Product Description" 
                 />
+                <input 
+                    type="file"
+                    multiple
+                    onChange={(e)=>{
+                        setProductImages(e.target.files);
+                    }}
+                    className="p-2 border rounded w-full" />
 
                 <button 
                     className="p-2 bg-blue-500 text-white rounded w-full hover:bg-blue-600"
