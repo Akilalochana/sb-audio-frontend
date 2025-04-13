@@ -9,7 +9,7 @@ export default function ProductCard({ item }) {
         <img
           src={item.image[0]}
           alt={item.name}
-          className="w-full h-48 object-cover rounded-lg"
+          className="w-full h-48 object-contain rounded-lg"
         />
         <span className={`absolute top-2 right-2 text-sm px-2 py-1 rounded-full ${
           item.availability ? 'bg-green-500 text-white' : 'bg-red-500 text-white'

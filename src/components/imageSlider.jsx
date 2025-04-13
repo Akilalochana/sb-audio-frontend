@@ -8,7 +8,7 @@ export default function ImageSlider(props){
     return(
         <div className="w-full  h-full flex justify-center flex-col">
 
-            <img src={selectedImage} alt="product" className="w-full h-[450px] object-cover mt-2 mb-1"/>
+            <img src={selectedImage} alt="product" className="w-full h-[450px] object-contain mt-2 mb-1"/>
 
             <div className="w-full h-[150px] flex justify-center">
                 {
