@@ -29,7 +29,7 @@ export default function Home() {
       <section className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 px-8 py-12">
         <div className="bg-gray-800 bg-opacity-70 p-6 rounded-lg hover:bg-opacity-90 transition-all">
           <h3 className="text-xl font-bold mb-2">Sound Systems</h3>
-          <p className="text-gray-300 mb-4">Complete PA systems for venues of any size</p>
+          <p className="text-gray-300 mb-4">Complete sound systems for venues of any size</p>
           <a href="#" className="text-blue-400 hover:underline">Explore →</a>
         </div>
         <div className="bg-gray-800 bg-opacity-70 p-6 rounded-lg hover:bg-opacity-90 transition-all">

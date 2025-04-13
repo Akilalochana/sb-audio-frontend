@@ -21,6 +21,7 @@
     "cobe": "^0.6.3",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.487.0",
+    "motion": "^12.6.5",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",

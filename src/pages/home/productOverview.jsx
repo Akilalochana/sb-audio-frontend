@@ -24,7 +24,8 @@ export default function ProductOverview() {
         })
     },[])
     return (
-        <div className=" w-full h-full flex justify-center">
+        <div className="min-h-screen w-full flex flex-col bg-[#121212]justify-center">
+            
   
             {
                 loadingStatus == "loading" &&
