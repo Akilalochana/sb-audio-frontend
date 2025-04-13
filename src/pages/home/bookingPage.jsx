@@ -42,7 +42,7 @@ import { RetroGrid } from "@/components/magicui/retro-grid";
         cart.days = daysBetween;
 
         const token = localStorage.getItem("token");
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/orders`, cart, {
+        axios.post(`${import.meta.env.VITE_HOST_BACKEND_URL}/api/orders`, cart, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
