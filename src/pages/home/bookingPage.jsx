@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
  import BookingItem from "../../components/bookingItem";
  import axios from "axios";
  import toast from "react-hot-toast";
+import { RetroGrid } from "@/components/magicui/retro-grid";
  
  export default function BookingPage(){
      const [cart, setCart] = useState(loadCart());
@@ -57,7 +58,9 @@ import { useEffect, useState } from "react";
     }
 
     return(
-        <div className="w-full h-full flex flex-col items-center ">
+        
+        <div className="min-h-screen w-full flex flex-col bg-[#121212] text-white relative items-center">
+                 <RetroGrid className="absolute inset-0 opacity-30" />
             <h1 className="text-2xl font-bold text-accent">Create Booking</h1>
             <div className="w-full flex flex-col items-center gap-4 mt-4">
                 <label className="flex flex-col">
@@ -91,7 +94,7 @@ import { useEffect, useState } from "react";
                 <p className="text-accent font-semibold">Total: {total.toFixed(2)}</p>
             </div>
             <div className="w-full flex justify-center mt-4">
-                <button className="bg-accent text-white px-4 py-2 rounded-md" onClick={handleBookingCreation}>Create Booking</button>
+                <button className="bg-accent text-black px-4 py-2 rounded-md" onClick={handleBookingCreation}>Create Booking</button>
             </div>
         </div>
     )

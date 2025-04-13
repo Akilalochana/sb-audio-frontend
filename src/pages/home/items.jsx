@@ -27,30 +27,26 @@ export default function Items(){
       }
     }, [state]);
   
-    // Filter items based on search and category
+    // Filter items based on category
     const filteredItems = items.filter(item => {
       const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                            item.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filter === "all" || item.category === filter;
       return matchesSearch && matchesCategory;
     });
-  
-    // Get unique categories
+
     const categories = items.length > 0 
       ? ["all", ...new Set(items.map(item => item.category))] 
       : ["all"];
   
     return (
       <div className="min-h-screen w-full flex flex-col bg-[#121212] text-white relative">
-        {/* Background RetroGrid */}
         <RetroGrid className="absolute inset-0 opacity-30" />
         
-        {/* Header */}
         <div className="relative z-10 w-full px-8 py-6 flex flex-col">
           <h1 className="text-3xl font-bold mb-2">Audio Equipment</h1>
           <p className="text-gray-300 mb-6">Browse our collection of professional audio equipment</p>
           
-          {/* Search and filter */}
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <input
               type="text"
@@ -77,14 +73,14 @@ export default function Items(){
           </div>
         </div>
   
-        {/* Loading State */}
+
         {state === "loading" && (
           <div className="w-full flex-grow flex justify-center items-center relative z-10">
             <div className="w-16 h-16 rounded-full border-4 border-t-blue-600 border-blue-600/30 animate-spin"></div>
           </div>
         )}
   
-        {/* Error State */}
+
         {state === "error" && (
           <div className="w-full flex-grow flex justify-center items-center relative z-10">
             <div className="text-center">
@@ -99,7 +95,7 @@ export default function Items(){
           </div>
         )}
   
-        {/* Success State - Products Grid */}
+
         {state === "success" && (
           <div className="w-full flex-grow flex flex-wrap justify-center gap-4 px-4 pb-12 relative z-10">
             {filteredItems.length > 0 ? (
